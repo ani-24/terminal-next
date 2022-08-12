@@ -1,0 +1,61 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: "Modeseven";
+  src: url("./../public/font/Modeseven-L3n5.ttf");
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url("./../public/background.jpg") center / cover;
+}
+
+.terminal {
+  height: 60vh;
+  width: 60vw;
+  backdrop-filter: blur(25px);
+  background: #00000050;
+  border-radius: 5px;
+  box-shadow: 0 10px 20px rgba($color: #000000, $alpha: 0.8);
+  padding: 25px;
+  overflow: auto;
+  p {
+    color: #f8f8f8;
+    font-family: "Modeseven";
+    line-height: 1.5;
+    &::before {
+      content: "> ";
+    }
+    &.blink {
+      animation: blink 700ms infinite alternate;
+      color: lightgreen;
+    }
+    &.user-input {
+      &::after {
+        content: "_";
+        color: lightgreen;
+        animation: blinkFull 700ms linear infinite alternate;
+      }
+    }
+    @keyframes blink {
+      to {
+        opacity: 0.5;
+      }
+    }
+    @keyframes blinkFull {
+      to {
+        opacity: 0;
+      }
+    }
+  }
+}
