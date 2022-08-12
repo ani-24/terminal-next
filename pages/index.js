@@ -2,7 +2,7 @@ import React, { createElement, useEffect, useRef, useState } from "react";
 import ReactDOM from "react-dom";
 
 const introduction = [
-  "Hello, My name is <b>Aniket Kumar</b>",
+  "Hello, My name is Aniket Kumar",
   "I am a young, creative full-stack web developer.",
   "Press: ",
   "- 'p' to view my projects",
@@ -52,6 +52,12 @@ export default function Home() {
   let p;
   const type = (sentences) => {
     terminalRef.current.scrollTop = terminalRef.current.scrollHeight;
+    music.addEventListener("timeupdate", () => {
+      if (music.ended) {
+        music.currentTime = 0;
+        music.play();
+      }
+    });
     if (charIndex.current === 0) {
       p = document.createElement("p");
       setTimeout(() => {
@@ -61,7 +67,6 @@ export default function Home() {
     if (charIndex.current <= sentences[sentIndex.current].length - 1) {
       p.innerHTML += sentences[sentIndex.current].charAt(charIndex.current);
       charIndex.current = charIndex.current + 1;
-      console.log(charIndex.current);
       setTimeout(() => {
         type(sentences);
       }, typeSpeed);
